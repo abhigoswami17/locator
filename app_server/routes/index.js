@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const contrMain = require('../controller/main');
+const ctrlLocations = require('../controller/locations.js');
+const ctrlOthers = require('../controller/others.js');
 
-const homepageController = (req, res) => {
-  res.render('index', { title: 'Express' });
-}
+//Location pages
+router.get('/', ctrlLocations.homeList);
+router.get('/location', ctrlLocations.locationInfo);
+router.get('/location/review/new', ctrlLocations.addReview);
 
-/* GET home page. */
-router.get('/', contrMain.index);
+//Other pages
+router.get('/about', ctrlOthers.about);
 
 module.exports = router;
